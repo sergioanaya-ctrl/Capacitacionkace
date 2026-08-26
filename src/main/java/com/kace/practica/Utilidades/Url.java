@@ -1,0 +1,8 @@
+package com.kace.practica.Utilidades;
+
+import net.thucydides.core.annotations.DefaultUrl;
+import net.thucydides.core.pages.PageObject;
+
+@DefaultUrl("https://us-east-19gjum8s1z.auth.us-east-1.amazoncognito.com/verifyPassword?client_id=761l8390vd1uq3en0n0gt8u2qa&redirect_uri=https%3A%2F%2Frelease-asistencia.kace-cloudtest.com%2Fauth&response_type=code")
+public class Url extends PageObject {
+}
