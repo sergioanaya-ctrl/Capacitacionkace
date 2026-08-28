@@ -1,7 +1,7 @@
 Feature: Este escenario es para iniciar sesion de kace
 
-  @Test
 
+  @Test
   Scenario: Validar que podamos iniciar sesion en kace
     Given Ingresamos a la url de kace
     When Ingresamos usuario
