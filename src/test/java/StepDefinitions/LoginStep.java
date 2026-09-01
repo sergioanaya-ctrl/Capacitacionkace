@@ -1,17 +1,26 @@
 package StepDefinitions;
 
+import com.kace.practica.Modelos.LoginModel;
+import com.kace.practica.Utilidades.Datoslogin;
 import com.kace.practica.Utilidades.Url;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
+import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Open;
 import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import static com.kace.practica.Interfaces.LoginPage.*;
+
+@NoArgsConstructor
 public class LoginStep {
 
     @Managed(driver = "chrome")
@@ -21,6 +30,12 @@ public class LoginStep {
     private final Actor actor = Actor.named("Usuario");
 
     Url url = new Url();
+    LoginModel model= Datoslogin.datoslogin();
+    // ✅ Inicialización lazy — no se carga en el constructor
+    private LoginModel login;
+
+
+
     @Before
     public void setUp(){
         actor.can(BrowseTheWeb.with(driver));
@@ -31,12 +46,17 @@ public class LoginStep {
     }
 
     @When("Ingresamos usuario")
-    public void ingresamosUsuario() {
+    public void ingresamosUsuario() throws InterruptedException {
+
+        actor.attemptsTo(
+                Enter.theValue(login.getUsuario()).into(Nombre_Usuario)
+        );
+        Thread.sleep(3000);
     }
 
     @And("Damos clic en el boton next")
     public void damosClicEnElBotonNext() {
-        
+        actor.attemptsTo(Click.on(Boton_Next));
     }
 
     @And("ingresamos contrasena")
@@ -45,12 +65,25 @@ public class LoginStep {
     }
 
     @And("Damos clic en el boton continuar")
-    public void damosClicEnElBotonContinuar() {
+    public void damosClicEnElBotonContinuar() throws InterruptedException {
+    actor.attemptsTo(Click.on(Boton_continue));
 
+    Thread.sleep(5000);
 
     }
 
     @Then("Validamos que estemos dentro que kace")
     public void validamosQueEstemosDentroQueKace() {
+    }
+
+    @When("Ingresamos usuario {string}")
+    public void ingresamosUsuario(String arg0) throws InterruptedException {
+        actor.attemptsTo(Enter.theValue(arg0).into(Nombre_Usuario));
+        Thread.sleep(3000);
+    }
+
+    @And("ingresamos contrasena {string}")
+    public void ingresamosContrasena(String arg0) {
+        actor.attemptsTo(Enter.theValue(arg0).into(Contrasena));
     }
 }

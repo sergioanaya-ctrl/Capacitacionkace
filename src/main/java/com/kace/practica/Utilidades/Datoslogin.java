@@ -1,20 +1,21 @@
 package com.kace.practica.Utilidades;
 
+import com.kace.practica.Modelos.LoginModel;
 import java.util.ResourceBundle;
 
 public class Datoslogin {
-    public static ResourceBundle resourceBundle() {
-        if (System.getProperties() != null) {
-            return ResourceBundle.getBundle(System.getProperties("env"));
-        } else {
-            return ResourceBundle.getBundle("datos.usuario");
-        }
 
-    }
+    private static final ResourceBundle BUNDLE =
+            ResourceBundle.getBundle("datos.usuario");
 
     public static String getdatos(String llave) {
-        return resourceBundle().getString(llave);
+        return BUNDLE.getString(llave);
     }
 
-
+    public static LoginModel datoslogin() {
+        LoginModel login = new LoginModel();
+        login.setUsuario(getdatos("usuario"));
+        login.setPassword(getdatos("contrasena"));
+        return login;
+    }
 }
