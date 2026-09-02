@@ -1,14 +1,27 @@
-.gradle
+### Gradle ###
+.gradle/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+### Serenity / Cucumber / Test reports ###
+target/
+test-outcomes/
+serenity-reports/
+allure-results/
+allure-report/
+*.log
+
+### Credenciales / datos sensibles ###
+*.env
+.env
+**/secrets/**
+**/*credentials*
+src/test/resources/datos/usuario.properties
+
 ### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
+.idea/
 *.iws
 *.iml
 *.ipr
@@ -38,5 +51,10 @@ bin/
 ### VS Code ###
 .vscode/
 
-### Mac OS ###
+### OS ###
 .DS_Store
+Thumbs.db
+
+### Selenium / WebDriver ###
+*.chromedriver
+chromedriver.log

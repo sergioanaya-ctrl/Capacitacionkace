@@ -31,8 +31,6 @@ public class LoginStep {
 
     Url url = new Url();
     LoginModel model= Datoslogin.datoslogin();
-    // ✅ Inicialización lazy — no se carga en el constructor
-    private LoginModel login;
 
 
 
@@ -49,7 +47,7 @@ public class LoginStep {
     public void ingresamosUsuario() throws InterruptedException {
 
         actor.attemptsTo(
-                Enter.theValue(login.getUsuario()).into(Nombre_Usuario)
+                Enter.theValue(model.getUsuario()).into(Nombre_Usuario)
         );
         Thread.sleep(3000);
     }
@@ -60,8 +58,11 @@ public class LoginStep {
     }
 
     @And("ingresamos contrasena")
-    public void ingresamosContrasena() {
-        
+    public void ingresamosContrasena() throws InterruptedException {
+        actor.attemptsTo(
+                Enter.theValue(model.getPassword()).into(Contrasena)
+        );
+        Thread.sleep(3000);
     }
 
     @And("Damos clic en el boton continuar")
