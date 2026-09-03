@@ -17,9 +17,14 @@ import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Open;
+import net.serenitybdd.screenplay.ensure.Ensure;
+import net.serenitybdd.screenplay.waits.WaitUntil;
 import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.time.Duration;
+
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static com.kace.practica.Interfaces.LoginPage.*;
 
 @NoArgsConstructor
@@ -79,6 +84,10 @@ public class LoginStep {
 
     @Then("Validamos que estemos dentro que kace")
     public void validamosQueEstemosDentroQueKace() {
+        actor.attemptsTo(
+                WaitUntil.the(Titulo_Dashboard, isVisible()).forNoMoreThan(Duration.ofSeconds(10)),
+                Ensure.that(Titulo_Dashboard).text().isEqualTo("Dashboard")
+        );
     }
 
     @When("Ingresamos usuario {string}")

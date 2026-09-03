@@ -10,4 +10,5 @@ public class LoginPage {
     public static final Target Boton_Next=Target.the("Es boton es para pasar la siguiente pagina").locatedBy("//button[@type='submit' and .//span[text()='Next']]");
     public static final Target Contrasena =Target.the("Este campo es para escribir el la contraseña").located(By.name("password"));
     public static final Target Boton_continue=Target.the("Es boton es para pasar la siguiente pagina").locatedBy("//button[@type='submit' and .//span[text()='Continue']]");
+    public static final Target Titulo_Dashboard=Target.the("Titulo que confirma que entramos al dashboard").located(By.id("section_dashboard"));
 }
