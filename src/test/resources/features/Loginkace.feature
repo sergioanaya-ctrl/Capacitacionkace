@@ -11,3 +11,9 @@ Feature: Este escenario es para iniciar sesion de kace
     #And ingresamos contrasena "F9YB!s27#IH7"
     And Damos clic en el boton continuar
     Then Validamos que estemos dentro que kace
+
+  @Test1
+  Scenario: Validar que podamos iniciar sesion en kace
+    Given Ingresamos a la url de kace
+    When Ingresamos usuario y contrasena
+    Then Validamos que estemos dentro que kace

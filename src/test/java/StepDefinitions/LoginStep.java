@@ -1,6 +1,8 @@
 package StepDefinitions;
 
+import com.kace.practica.Interacciones.LoginInteractions;
 import com.kace.practica.Modelos.LoginModel;
+import com.kace.practica.Tareas.LoginTask;
 import com.kace.practica.Utilidades.Datoslogin;
 import com.kace.practica.Utilidades.Url;
 import io.cucumber.java.Before;
@@ -59,9 +61,11 @@ public class LoginStep {
 
     @And("ingresamos contrasena")
     public void ingresamosContrasena() throws InterruptedException {
-        actor.attemptsTo(
-                Enter.theValue(model.getPassword()).into(Contrasena)
-        );
+
+        actor.attemptsTo(LoginInteractions.datos(model));
+      //  actor.attemptsTo(
+        //        Enter.theValue(model.getPassword()).into(Contrasena)
+        //);
         Thread.sleep(3000);
     }
 
@@ -86,5 +90,12 @@ public class LoginStep {
     @And("ingresamos contrasena {string}")
     public void ingresamosContrasena(String arg0) {
         actor.attemptsTo(Enter.theValue(arg0).into(Contrasena));
+    }
+
+    @When("Ingresamos usuario y contrasena")
+    public void ingresamosUsuarioYContrasena() throws InterruptedException {
+        actor.attemptsTo(LoginTask.datos1(model));
+        //actor.attemptsTo(LoginInteractions.datos(model));
+        Thread.sleep(8000);
     }
 }
